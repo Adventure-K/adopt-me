@@ -15,21 +15,6 @@
 
     <script src="https://unpkg.com/react@18.2.0/umd/react.development.js"></script> <!-- The API - the part common to all React contexts -->
     <script src="https://unpkg.com/react-dom@18.2.0/umd/react-dom.development.js"></script> <!-- Renderer for desktop DOM, as opposed to for mobile or whatever else -->
-    <script>
-        const App = () => { // COMPONENT. Function that returns the results of whatever React.createElement does. MUST be capital first letter
-                            // Making the "rubber stamp"
-            return React.createElement(
-                "div", // The kind of element
-                {}, // Attributes you're handing down to the element e.g. class name. Has to be declared. Could also be null
-                React.createElement("h1", {}, "Adopt Me!")
-            )
-        };
-
-        // The stamping (The instantiation)
-        const container = document.getElementById('root'); // The ID of the element enclosing the component (why? not sure yet). Taco. root is convention. 
-        const root = ReactDOM.createRoot(container); // 1 line: const root = ReactDOM.createRoot(document.getElementById('root'));
-        root.render(React.createElement(App));  // May also supply attributes and children, as above (e.g. createElement(App, {}, null)).  
-                                                // "The trick of React": 
-    </script>                                   <!-- If you give createElement a *string*, it just makes an element whose name is that string. No questions asked. --> 
-</body>                                         <!-- If you give it a *component*, it will render it. -->
+    <script src="./App.js"></script>
+</body>                                         
 </html>

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';        // useState and useEffect: these are hooks. By convention all hooks start with "use"
-import Pet from './Pet.jsx'
+import Results from './Results.jsx'
 import useBreedList from './useBreedList.js';
 const ANIMALS = ['bird', 'cat', 'dog', 'rabbit', 'reptile'];
 
@@ -9,7 +9,7 @@ const SearchParams = () => {
     const [breed, setBreed] = useState('');
     const [pets, setPets] = useState([]);
     const [breeds] = useBreedList(animal);      // animal is a prop here. We're passing it to the custom hook when the hook is invoked (when animal changes?). 
-                                                // I THINK breeds is an array above because that causes it to only take the first element from the hook's output array.
+                                                // ARRAY DESTRUCTURING. I THINK breeds is declared as an array above because that causes it to only take the first element from the hook's return (output) array. 
     useEffect(() => {                           // This hook is used to make things happen outside the component. Usually API calls, but not always
         requestPets();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -27,7 +27,7 @@ const SearchParams = () => {
 
     // useEffect(() => {                        
     //     console.log(location)                // BIG: Don't do side effects (e.g. console.log) inside the render function. They don't display right and it makes the function slower.
-    // }, [location]);                          // BIG: Specifying [location] as the second argument here tells React to do this useEffect whenever location changes
+    // }, [location]);                          // DEPENDENCY ARRAY: Specifying [location] as the second argument here tells React to do this useEffect whenever location changes
                                                 // Don't make hooks conditional on anything. Each re-render must call all the same hooks, in the same order, every time.
 
     return (                                    // Parentheses here allow the return statement to use multiple lines
@@ -72,14 +72,7 @@ const SearchParams = () => {
                 </label>
                 <button type="submit">Submit</button>
             </form>
-            {pets.map((pet) => (
-                <Pet 
-                    name={pet.name} 
-                    animal={pet.animal} 
-                    breed={pet.breed} 
-                    key={pet.id}
-                />
-            ))}
+            <Results pets={pets} />
         </div>
     );
 };

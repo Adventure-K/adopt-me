@@ -2,6 +2,8 @@ import React from 'react';
 import { useContext } from 'react';
 import { useParams } from 'react-router-dom';
 
+
+// *** CONTEXT *** //
 const IdContext = React.createContext(); // This is a way to pass id around with just React and React Router
 
 // eslint-disable-next-line no-unused-vars

@@ -1,5 +1,7 @@
 // Custom Hook!
+// First iteration, not actually using this, lol
 
+/*
 import { useState, useEffect } from 'react';
 
 const localCache = {};
@@ -31,4 +33,17 @@ export default function useBreedList(taco) {            // taco is the props com
         }
     }, [taco]);       // useEffect dependency array: Do the useEffect stuff only when there is a change to the animal propsed into this hook.
     return [breedList, status];
+}
+
+*/
+
+// With React Query instead
+
+import { useQuery } from '@tanstack/react-query';
+import fetchBreedList from './fetchBreedList';
+
+export default function useBreedList(animal) {
+    const results = useQuery(["breeds", animal], fetchBreedList);
+
+    return [results?.data?.breeds ?? [], results.status] // Give the results if there, otherwise an empty array
 }

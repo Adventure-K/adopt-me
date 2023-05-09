@@ -8,7 +8,8 @@ import ReactDOM from "react-dom/client";
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 // ^ React Router is by far the most popular client routing library.
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-// ^ The hardest part about React - effects. Should minimize useEffect wherever possible. To that end: React Query
+// ^ The hardest part about React - effects. Should minimize useEffect wherever possible. 
+// To that end: React Query
 
 // *** Components *** //
 import SearchParams from "./SearchParams";

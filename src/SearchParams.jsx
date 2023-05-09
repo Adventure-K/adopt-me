@@ -39,7 +39,7 @@ const SearchParams = () => {
 
     return (                                    // Parentheses here allow the return statement to use multiple lines
         <div className="search-params">         {/* "class" is a reserved term in javascript, so JSX diverges here slightly from HTML and uses "className" */}
-            <form onSubmit={e => {              {/* This is an example of a controlled form. It's a good way of illustrating state. It's not best practice. Will learn uncontrolled later */}
+            <form onSubmit={e => {              {/* This was an example of a controlled form. It's a good way of illustrating state. It's not best practice. Will learn uncontrolled later */}
                 e.preventDefault();
                 // requestPets();
                 const formData = new FormData(e.target); // Browser API, not React. Send it a form and it pulls out the data for you.

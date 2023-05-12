@@ -4,6 +4,7 @@
 // Strict mode: React feature that warns you about stuff that will probably stop working in new versions. To enable, wrap everything in App's return( <StrictMode> </StrictMode> )
 
 // *** Dependencies *** //
+import { useState } from 'react';
 import ReactDOM from "react-dom/client";
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 // ^ React Router is by far the most popular client routing library.
@@ -14,7 +15,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 // *** Components *** //
 import SearchParams from "./SearchParams";
 import Details from "./Details";
-
+import AdoptedPetContext from './AdoptedPetContext';
 
 // One-way data flow (props) - Vastly simplifies debugging and makes data flow much more explicit
 // Since child now expects props, add arguments to createElement commands in parent
@@ -50,16 +51,19 @@ const queryClient = new QueryClient({
 });
 
 const App = () => {
+  const adoptedPet = useState(null);
   return (
-    <BrowserRouter>                                         {/* Higher-order component for React Router */}
-      <QueryClientProvider client={queryClient}>            {/* Higher-order component for React Query */}
-        <header>
-          <Link to='/'>Adopt Me!</Link>
-        </header>
-        <Routes>
-          <Route path="/details/:id" element={<Details />} />
-          <Route path="/" element={<SearchParams />} />
-        </Routes>
+    <BrowserRouter>                                         {/* Higher-order component for React Router. Uses context. */}
+      <QueryClientProvider client={queryClient}>            {/* Higher-order component for React Query. Uses context. */}
+        <AdoptedPetContext.Provider value={adoptedPet}>     
+          <header>
+            <Link to='/'>Adopt Me!</Link>
+          </header>
+          <Routes>
+            <Route path="/details/:id" element={<Details />} />
+            <Route path="/" element={<SearchParams />} />
+          </Routes>
+        </AdoptedPetContext.Provider>
       </QueryClientProvider>
     </BrowserRouter>
   );
